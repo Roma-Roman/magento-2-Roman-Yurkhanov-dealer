@@ -1,0 +1,60 @@
+<?php
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+$product = $block->getProduct();
+
+/** @var \RomanYurkhanov\Dealer\ViewModel\Dealer $viewModel */
+$viewModel = $block->getData('view_model');
+$dealer = $viewModel->getDealerData($product->getData('dealer'));
+$dealerLogo = $viewModel->getDealerLogoUrl($product->getData('dealer'));
+
+$dealerDescriptionAttribute = $product->getData('dealer_description');
+?>
+
+<div class="dealer-wrapper">
+    <div class="dealer-logo">
+        <?php if ($dealer->getLogo()) : ?>
+            <img src="<?= $block->escapeHtml($dealerLogo) ?>" width="140" height="140" alt="<?= $block->escapeHtml(__('Dealer logo')) ?>">
+        <?php else : ?>
+            <img src="<?php echo $this->getViewFileUrl('RomanYurkhanov_Dealer::images/dealer-default.jpg'); ?>" width="140" height="140" alt="<?= $block->escapeHtml(__('Dealer default logo')) ?>"/>
+        <?php endif; ?>
+    </div>
+
+    <ul class="dealer-info">
+        <li>
+            <strong><?= $block->escapeHtml(__('Dealer:')) ?></strong>
+            <a href="<?= $block->getUrl('dealer/' . $dealer->getCode(), ['_secure' => true]) ?>"
+               title="<?= $block->escapeHtml($dealer['name']) ?>"
+            >
+                <?= $block->escapeHtml($dealer->getName()) ?>
+                (<?= $block->escapeHtml($dealer->getCode()) ?>)
+            </a>
+        </li>
+
+        <?php if ($dealerDescriptionAttribute) : ?>
+            <li>
+                <strong><?= $block->escapeHtml(__('Description:')) ?></strong>
+                <?php echo substr($dealerDescriptionAttribute, 0, 100); ?>
+                <?php if (strlen($dealerDescriptionAttribute) > 100) echo '...'; ?>
+            </li>
+        <?php endif; ?>
+
+        <?php /*
+            <?php if ($dealer->getDescription()) : ?>
+                <li>
+                    <strong><?= $block->escapeHtml(__('Description:')) ?></strong>
+                    <?php echo substr($dealer->getDescription(),0,100); ?>
+                    <?php if(strlen($dealer->getDescription()) > 100) echo '...'; ?>
+                </li>
+            <?php endif; ?>
+         */ ?>
+    </ul>
+</div>

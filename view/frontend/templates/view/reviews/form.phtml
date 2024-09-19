@@ -1,0 +1,101 @@
+<?php
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+/**
+ * @var \RomanYurkhanov\Dealer\Block\Dealer\View\Reviews\Form $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$dealer = $block->getDealer();
+?>
+
+<div class="dealer-section-item">
+    <h2><?= $block->escapeHtml(__('Add Review:')) ?></h2>
+
+    <div class="block review-add">
+        <div class="block-title"><strong><?= $block->escapeHtml(__('Write Your Own Review')) ?></strong></div>
+        <div class="block-content">
+            <?php //if ($block->getAllowWriteReviewFlag()):?>
+                <form action="<?= $block->escapeUrl($block->getAction()) ?>" class="review-form" method="post" id="review-form" data-role="dealer-review-form" data-bind="scope: 'review-form'">
+                    <?= $block->getBlockHtml('formkey') ?>
+                    <?= $block->getChildHtml('form_fields_before') ?>
+                    <fieldset class="fieldset review-fieldset" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                        <legend class="legend review-legend"><span><?= $block->escapeHtml(__("You're reviewing Dealer:")) ?></span><strong><?= $block->escapeHtml($dealer->getName()) ?></strong></legend><br />
+                        <?php //if ($block->getRatings() && $block->getRatings()->getSize()): ?>
+                            <span id="input-message-box"></span>
+                            <fieldset class="field required review-field-ratings">
+                                <legend class="label"><span><?= $block->escapeHtml(__('Your Rating')) ?></span></legend><br/>
+                                <div class="control">
+                                    <div class="nested" id="product-review-table">
+                                        <?php //foreach ($block->getRatings() as $_rating): ?>
+                                            <div class="field choice review-field-rating">
+                                                <label class="label" id="rating_label"><span>Rating</span></label>
+                                                <div class="control review-control-vote">
+                                                    <?php foreach ($block->getRatings() as $_rating): ?>
+                                                        <input type="radio" name="rate"
+                                                               id="<?= $block->escapeHtml($_rating['label']) ?>"
+                                                               value="<?= $block->escapeHtml($_rating['value']) ?>"
+                                                               class="radio" data-validate="{'rating-required':true}"
+                                                               aria-labelledby="Rating_rating_label <?= $block->escapeHtml($_rating['label']) ?>_label"
+                                                               aria-required="true">
+                                                        <label
+                                                            class="rating-<?= $block->escapeHtml($_rating['value']) ?>"
+                                                            for="<?= $block->escapeHtml($_rating['label']) ?>"
+                                                            title="<?= $block->escapeHtml($_rating['value']) ?> star"
+                                                            id="<?= $block->escapeHtml($_rating['label']) ?>_label">
+                                                            <span><?= $block->escapeHtml($_rating['value']) ?> star</span>
+                                                        </label>
+                                                    <?php endforeach; ?>
+                                                </div>
+
+                                            </div>
+                                        <?php //endforeach; ?>
+                                    </div>
+                                    <input type="hidden" name="validate_rating" class="validate-rating" value="" />
+                                </div>
+                            </fieldset>
+                        <?php //endif ?>
+                        <div class="field review-field-nickname required">
+                            <label for="title_field" class="label"><span><?= $block->escapeHtml(__('Title')) ?></span></label>
+                            <div class="control">
+                                <input type="text" name="title" id="title_field" class="input-text" data-validate="{required:true}" data-bind="value: title()" />
+                            </div>
+                        </div>
+                        <div class="field review-field-text">
+                            <label for="message_field" class="label"><span><?= $block->escapeHtml(__('Message')) ?></span></label>
+                            <div class="control">
+                                <textarea name="message" id="message_field" cols="5" rows="3" data-bind="value: review().message"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="actions-toolbar review-form-actions">
+                        <div class="primary actions-primary">
+                            <button type="submit" class="action submit primary"><span><?= $block->escapeHtml(__('Submit Review')) ?></span></button>
+                        </div>
+                    </div>
+                </form>
+                <script type="text/x-magento-init">
+{
+    "[data-role=dealer-review-form]": {
+        "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+    },
+    "#review-form": {
+        "Magento_Review/js/error-placement": {},
+        "Magento_Review/js/validate-review": {},
+        "Magento_Review/js/submit-review": {}
+    }
+}
+</script>
+        </div>
+    </div>
+
+
+</div>

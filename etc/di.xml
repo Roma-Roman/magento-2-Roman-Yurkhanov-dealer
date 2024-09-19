@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--DATA-->
+    <preference for="RomanYurkhanov\Dealer\Api\Data\DealerInterface" type="RomanYurkhanov\Dealer\Model\Dealer" />
+    <preference for="RomanYurkhanov\Dealer\Api\Data\DealerReviewsInterface" type="RomanYurkhanov\Dealer\Model\DealerReviews" />
+
+    <!--REPOSITORY-->
+    <preference for="RomanYurkhanov\Dealer\Api\DealerRepositoryInterface" type="RomanYurkhanov\Dealer\Model\DealerRepository" />
+    <preference for="RomanYurkhanov\Dealer\Api\DealerReviewsRepositoryInterface" type="RomanYurkhanov\Dealer\Model\DealerReviewsRepository" />
+
+    <!--PLUGIN-->
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="checkout-summary-product-attribute" type="RomanYurkhanov\Dealer\Plugin\Checkout\Model\DefaultConfigProvider" />
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="romanyurkhanov_dealer_dealer_listing_data_source" xsi:type="string">RomanYurkhanov\Dealer\Model\ResourceModel\Dealer\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="RomanYurkhanov\Dealer\Model\ResourceModel\Dealer\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">romanyurkhanov_dealer</argument>
+            <argument name="resourceModel" xsi:type="string">RomanYurkhanov\Dealer\Model\ResourceModel\Dealer</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="RomanYurkhanov\Dealer\ReferenceImageUpload" type="RomanYurkhanov\Dealer\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">romanyurkhanov/dealer/tmp/logo</argument>
+            <argument name="basePath" xsi:type="string">romanyurkhanov/dealer/logo</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="RomanYurkhanov\Dealer\Controller\Adminhtml\Dealer\Logo\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">RomanYurkhanov\Dealer\ReferenceImageUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="romanyurkhanov_dealer_reviews_listing_data_source" xsi:type="string">RomanYurkhanov\Dealer\Model\ResourceModel\DealerReviews\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="RomanYurkhanov\Dealer\Model\ResourceModel\DealerReviews\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">romanyurkhanov_dealer_reviews</argument>
+            <argument name="resourceModel" xsi:type="string">RomanYurkhanov\Dealer\Model\ResourceModel\DealerReviews</argument>
+        </arguments>
+    </virtualType>
+
+    <!--CONSOLE COMMANDS-->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="dealer_list" xsi:type="object">RomanYurkhanov\Dealer\Console\Command\DealersListCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

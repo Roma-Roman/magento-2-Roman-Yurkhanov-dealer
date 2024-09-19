@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="RomanYurkhanov\Dealer\Api\DealerRepositoryInterface">
+        <plugin name="romanyurkhanov_dealer_dealer_repository" type="RomanYurkhanov\Dealer\Plugin\DealerRepository"/>
+    </type>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="romanyurkhanov_dealer_order_repository" type="RomanYurkhanov\Dealer\Plugin\Order\OrderRepository"/>
+    </type>
+
+    <type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="romanyurkhanov_dealer_product_repository" type="RomanYurkhanov\Dealer\Plugin\Catalog\ProductRepository"/>
+    </type>
+</config>

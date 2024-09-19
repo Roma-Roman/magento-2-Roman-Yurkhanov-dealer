@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="romanyurkhanov_dealer" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Dealer</label>
+            <tab>romanyurkhanov</tab>
+            <class>item-icon-tab dealer</class>
+            <resource>RomanYurkhanov_Dealer::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <label>General</label>
+                <field id="dealer_tab_name" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Dealer tab name for Product page</label>
+                    <comment><![CDATA[Example: <br /> Dealer Short Information]]></comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="dealer_review_enabled" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable dealer review</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <b>Yes</b> to enable dealer review.<br />]]></comment>
+                </field>
+            </group>
+
+            <group id="advanced_settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <label>Advanced Settings</label>
+                <field id="available_dealers" translate="label" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Available dealers</label>
+                    <source_model>RomanYurkhanov\Dealer\Model\Config\Dealer</source_model>
+                    <comment><![CDATA[Please select available dealers.<br />]]></comment>
+                    <validate>validate-select</validate>
+                </field>
+                <field id="add_dealer_info" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Add dealer info to product and order via API</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <b>Yes</b> to add dealer info to product and order via API.<br />]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

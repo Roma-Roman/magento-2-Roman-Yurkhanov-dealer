@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="dealer.block" template="RomanYurkhanov_Dealer::product/view/dealer_block.phtml" before="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">RomanYurkhanov\Dealer\ViewModel\Dealer</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View" name="dealer.tab" template="RomanYurkhanov_Dealer::product/view/dealer_tab.phtml" group="detailed_info" >
+                <arguments>
+                    <argument name="title" xsi:type="object">RomanYurkhanov\Dealer\Model\Product\View\Dealer\Tab</argument>
+                    <argument name="at_label" xsi:type="string">Dealer Short Description</argument>
+                    <argument name="at_code" xsi:type="string">dealer_description</argument>
+                    <argument name="css_class" xsi:type="string">dealer-description</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+                    <argument name="view_model" xsi:type="object">RomanYurkhanov\Dealer\ViewModel\Dealer</argument>
+                    <argument name="sort_order" xsi:type="string">100</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

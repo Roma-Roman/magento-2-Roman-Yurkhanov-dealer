@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">romanyurkhanov_dealer_dealer_form.romanyurkhanov_dealer_dealer_form_data_source</item>
+            <item name="deps" xsi:type="string">romanyurkhanov_dealer_dealer_form.romanyurkhanov_dealer_dealer_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Dealer Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">romanyurkhanov_dealer_dealer_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">RomanYurkhanov\Dealer\Block\Adminhtml\Dealer\Edit\SaveButton</item>
+            <item name="delete" xsi:type="string">RomanYurkhanov\Dealer\Block\Adminhtml\Dealer\Edit\DeleteButton</item>
+            <item name="back" xsi:type="string">RomanYurkhanov\Dealer\Block\Adminhtml\Dealer\Edit\BackButton</item>
+        </item>
+    </argument>
+    <dataSource name="romanyurkhanov_dealer_dealer_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">RomanYurkhanov\Dealer\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">romanyurkhanov_dealer_dealer_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">dealer_id</argument>
+            <argument name="requestFieldName" xsi:type="string">dealer_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="romanyurkhanov_dealer/dealer/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="dealer_details">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+            <!--<item name="collapsible" xsi:type="boolean">true</item>-->
+                <item name="label" xsi:type="string" translate="true">Dealer Details</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Code</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealer</item>
+                    <item name="dataScope" xsi:type="string">code</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                       <item name="disabled" xsi:type="string">${ $.provider}:data.read_only</item>
+                   </item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealer</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="link">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Link</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealer</item>
+                    <item name="dataScope" xsi:type="string">link</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-url" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="disabled" xsi:type="string">${ $.provider}:data.read_only</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="logo" formElement="imageUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dealer</item>
+                    <item name="dataScope" xsi:type="string">logo</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Logo</label>
+                <visible>true</visible>
+<!--                <validation>-->
+<!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+<!--                </validation>-->
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+<!--                        <required>true</required>-->
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="romanyurkhanov_dealer/dealer_logo_image/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>RomanYurkhanov_Dealer/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Description</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">dealer</item>
+                    <item name="dataScope" xsi:type="string">description</item>
+                </item>
+            </argument>
+        </field>
+        <field name="contact_info">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Contact Info</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealer</item>
+                    <item name="dataScope" xsi:type="string">contact_info</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="is_enabled" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">dealer</item>
+                    <item name="default" xsi:type="number">1</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable</label>
+                <dataScope>is_enabled</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+<!-- SELECT -->
+<!--        <field name="is_enabled">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="dataType" xsi:type="string">text</item>-->
+<!--                    <item name="label" xsi:type="string" translate="true">Is Enabled</item>-->
+<!--                    <item name="formElement" xsi:type="string">select</item>-->
+<!--                    <item name="source" xsi:type="string">is_enabled</item>-->
+<!--                    <item name="sortOrder" xsi:type="number">120</item>-->
+<!--                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>-->
+<!--                    <item name="validation" xsi:type="array">-->
+<!--                        <item name="required-entry" xsi:type="boolean">true</item>-->
+<!--                    </item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--        </field>-->
+    </fieldset>
+</form>

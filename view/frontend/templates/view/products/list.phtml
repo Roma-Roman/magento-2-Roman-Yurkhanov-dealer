@@ -1,0 +1,36 @@
+<?php
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+/**
+ * @var \RomanYurkhanov\Dealer\Block\Dealer\View\Products $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$dealerProducts = $block->getDealerProducts();
+?>
+
+<div class="dealer-section-item">
+    <h2><?= $block->escapeHtml(__('Dealer Products:')) ?></h2>
+
+    <?php if ($dealerProducts) : ?>
+        <ul style="display: flex;flex-wrap: wrap;gap: 10px 20px;">
+            <?php foreach ($dealerProducts as $dealerProduct): ?>
+                <li>
+                    <a href="<?= $block->escapeHtml($dealerProduct->getProductUrl()) ?>" title="<?= $block->escapeHtml($dealerProduct->getName()) ?>">
+                        <?= $block->escapeHtml($dealerProduct->getName()) ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else : ?>
+        <?= $block->escapeHtml(__('There are no products attached for this dealer yet')) ?>
+    <?php endif; ?>
+</div>

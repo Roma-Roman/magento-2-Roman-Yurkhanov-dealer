@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Customer\Block\Account\SortLinkInterface"
+                   ifconfig="romanyurkhanov_dealer/advanced_settings/add_dealer_info"
+                   name="customer-account-navigation-bestdealers-link"
+            >
+                <arguments>
+                    <argument name="path" xsi:type="string">dealer/account/index</argument>
+                    <argument name="label" xsi:type="string">Best dealers for you</argument>
+                    <argument name="sortOrder" xsi:type="number">210</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

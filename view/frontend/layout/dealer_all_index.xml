@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Dealer List Page</title>
+        <meta name="title" content="Dealer List Page"/>
+        <meta name="description" content="This is Dealer List Page"/>
+        <meta name="keywords" content="Dealer, vendor, your keywords"/>
+    </head>
+
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Dealer List Page</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceContainer name="content">
+            <block class="RomanYurkhanov\Dealer\Block\Dealer\All" name="dealer.list" template="RomanYurkhanov_Dealer::list/index.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,30 @@
+<?php
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+/**
+ * NOTE :: View model is used instead of this at the moment
+ */
+/**
+ * @var \RomanYurkhanov\Dealer\Block\Dealer\Catalog\Dealer $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$dealer = $block->getProductDealer();
+
+?>
+
+<a href="<?= $block->getUrl('dealer/' . $dealer->getCode(), ['_secure' => true]) ?>"
+   title="<?= $block->escapeHtml($dealer->getName()) ?>"
+>
+    <?= $block->escapeHtml(__('Dealer:')) ?>
+    <?= $block->escapeHtml($dealer->getName()) ?>
+    (<?= $block->escapeHtml($dealer->getCode()) ?>)
+</a>

@@ -1,0 +1,37 @@
+<?php
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+$product = $block->getProduct();
+
+/** @var \RomanYurkhanov\Dealer\ViewModel\Dealer $viewModel */
+$viewModel = $block->getData('view_model');
+$dealerData = $viewModel->getDealerData($product->getData('dealer'));
+
+$dealerDescriptionAttribute = $product->getData('dealer_description');
+?>
+
+<?php if ($dealerDescriptionAttribute) :?>
+    <div class="additional-attributes-wrapper table-wrapper">
+        <table class="data table additional-attributes" id="product-attribute-specs-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('More Information')) ?></caption>
+            <tbody>
+                <tr>
+                    <?php /*
+                    <th class="col label" scope="row"><?= $block->escapeHtml(__('Dealer Description:')) ?></th>
+                    <td class="col data" data-th="<?= $block->escapeHtml(__('Dealer Description:')) ?>"><?= $block->escapeHtml($dealerData->getDescription()) ?></td>
+                    */ ?>
+                    <th class="col label" scope="row"><?= $block->escapeHtml(__('Dealer Description:')) ?></th>
+                    <td class="col data" data-th="<?= $block->escapeHtml(__('Dealer Description:')) ?>"><?= $block->escapeHtml($product->getData('dealer_description')) ?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<?php endif;?>

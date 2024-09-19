@@ -1,0 +1,73 @@
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .dealer-status {
+        position: relative;
+
+        &:before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 12px;
+            background: #ccc;
+            border-radius: 50%;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: -4px;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(203, 203, 203, 0.5);
+            border-radius: 100%;
+            animation: pulseCustom 2.5s cubic-bezier(.19,1,.22,1) infinite both;
+            will-change: transform;
+        }
+
+        &.enabled {
+            &:before {
+                background: #1ade18;
+            }
+            &:after {
+                background-color: rgba(26,222,24,.5);
+            }
+        }
+        &.disabled {
+            &:before {
+                background: #ea0025;
+            }
+            &:after {
+                background-color: rgba(225, 0, 0, 0.5);
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+//
+//  Mobile
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}

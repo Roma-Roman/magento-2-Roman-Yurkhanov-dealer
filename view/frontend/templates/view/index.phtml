@@ -1,0 +1,71 @@
+<?php
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+/**
+ * @var \RomanYurkhanov\Dealer\Block\Dealer\View $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$dealer = $block->getDealer();
+$dealerLogo = $block->getLogoUrl();
+?>
+
+<div class="dealer-view-page">
+
+    <div class="dealer-section-item">
+        <h2><?= $block->escapeHtml(__('Dealer Info:')) ?></h2>
+
+        <div class="dealer-wrapper">
+            <div class="dealer-logo">
+                <?php if ($dealer->getLogo()) : ?>
+                    <img src="<?= $block->escapeHtml($dealerLogo) ?>" width="200" height="200" alt="<?= $block->escapeHtml(__('Dealer logo')) ?>">
+                <?php else : ?>
+                    <img src="<?php echo $this->getViewFileUrl('RomanYurkhanov_Dealer::images/dealer-default.jpg'); ?>" width="200" height="200" alt="<?= $block->escapeHtml(__('Dealer default logo')) ?>"/>
+                <?php endif; ?>
+            </div>
+
+            <ul class="dealer-info">
+                <li>
+                    <strong><?= $block->escapeHtml(__('Name:')) ?></strong>
+                    <?= $block->escapeHtml($dealer->getName()) ?>
+                </li>
+
+                <li>
+                    <strong><?= $block->escapeHtml(__('Contact info:')) ?></strong>
+                    <?= $block->escapeHtml($dealer->getContactInfo()) ?>
+                </li>
+
+                <?php if ($dealer->getDescription()) : ?>
+                    <li>
+                        <strong><?= $block->escapeHtml(__('Description:')) ?></strong>
+                        <?= $block->escapeHtml($dealer->getDescription()) ?>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($dealer->getLink()) : ?>
+                    <li>
+                        <strong><?= $block->escapeHtml(__('Link:')) ?></strong>
+                        <a href="<?= $block->escapeHtml($dealer->getLink()) ?>" title="<?= $block->escapeHtml(__('Link')) ?>" target="_blank">
+                            <?= $block->escapeHtml($dealer->getLink()) ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
+
+    <?= $block->getChildHtml('reviews_list');?>
+
+    <?= $block->getChildHtml('reviews_form');?>
+
+    <?= $block->getChildHtml('products_list');?>
+</div>
+

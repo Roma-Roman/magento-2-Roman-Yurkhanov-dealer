@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">romanyurkhanov_dealer_reviews_form.romanyurkhanov_dealer_reviews_form_data_source</item>
+            <item name="deps" xsi:type="string">romanyurkhanov_dealer_reviews_form.romanyurkhanov_dealer_reviews_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Review Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">romanyurkhanov_dealer_reviews_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">RomanYurkhanov\Dealer\Block\Adminhtml\Reviews\Edit\SaveButton</item>
+<!--            <item name="delete" xsi:type="string">RomanYurkhanov\Dealer\Block\Adminhtml\Edit\DeleteButton</item>-->
+            <item name="back" xsi:type="string">RomanYurkhanov\Dealer\Block\Adminhtml\Reviews\Edit\BackButton</item>
+        </item>
+    </argument>
+    <dataSource name="romanyurkhanov_dealer_reviews_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">RomanYurkhanov\Dealer\Model\DataProviderDealerReviews</argument>
+            <argument name="name" xsi:type="string">romanyurkhanov_dealer_reviews_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">review_id</argument>
+            <argument name="requestFieldName" xsi:type="string">review_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="romanyurkhanov_dealer/reviews/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="review_details">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+            <!--<item name="collapsible" xsi:type="boolean">true</item>-->
+                <item name="label" xsi:type="string" translate="true">Review Details</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="rate">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rate</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">review</item>
+                    <item name="dataScope" xsi:type="string">rate</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                       <item name="disabled" xsi:type="string">${ $.provider}:data.read_only</item>
+                   </item>
+                </item>
+            </argument>
+        </field>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Title</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">review</item>
+                    <item name="dataScope" xsi:type="string">title</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="disabled" xsi:type="string">${ $.provider}:data.read_only</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="message">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Message</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">review</item>
+                    <item name="dataScope" xsi:type="string">message</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="disabled" xsi:type="string">${ $.provider}:data.read_only</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_confirmed">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Is Confirmed</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">is_confirmed</item>
+                    <item name="sortOrder" xsi:type="number">120</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="disabled" xsi:type="string">${ $.provider}:data.read_only</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="dealer_name" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Dealer Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">review</item>
+                    <item name="dataScope" xsi:type="string">dealer_name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="disabled" xsi:type="string">${ $.provider}:data.dealer_name</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+<!-- SELECT -->
+<!--        <field name="is_enabled">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="dataType" xsi:type="string">text</item>-->
+<!--                    <item name="label" xsi:type="string" translate="true">Is Enabled</item>-->
+<!--                    <item name="formElement" xsi:type="string">select</item>-->
+<!--                    <item name="source" xsi:type="string">is_enabled</item>-->
+<!--                    <item name="sortOrder" xsi:type="number">120</item>-->
+<!--                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>-->
+<!--                    <item name="validation" xsi:type="array">-->
+<!--                        <item name="required-entry" xsi:type="boolean">true</item>-->
+<!--                    </item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--        </field>-->
+    </fieldset>
+</form>

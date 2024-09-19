@@ -1,0 +1,56 @@
+<?php
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+/**
+ * @var \RomanYurkhanov\Dealer\Block\Dealer\All $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$dealers = $block->getDealers();
+?>
+<?php if ($dealers) :?>
+<div class="dealer-list">
+    <table class="table dealer-table">
+        <thead>
+        <tr>
+            <th><?= $block->escapeHtml(__('Name')) ?></th>
+            <th><?= $block->escapeHtml(__('Contact')) ?></th>
+            <th><?= $block->escapeHtml(__('Status')) ?></th>
+            <th><?= $block->escapeHtml(__('View')) ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($dealers as $dealer): ?>
+            <tr>
+                <td data-label="Name"><?= $block->escapeHtml($dealer->getName()) ?></td>
+                <td data-label="Contact Info"><?= $block->escapeHtml($dealer->getContactInfo()) ?></td>
+                <td data-label="Status">
+                    <?php
+                    $dealerStatus = (bool)$dealer->getIsEnabled();
+                    $result = $dealerStatus ?
+                        '<span class="dealer-status enabled">' . $block->escapeHtml(__('Enabled')) . '</span>' :
+                        '<span class="dealer-status disabled">' . $block->escapeHtml(__('Disabled')) . '</span>';
+                    echo $result;
+                    ?>
+                </td>
+                <td data-label="View">
+                    <a href="<?= $block->getUrl('dealer/' . $dealer->getCode(), ['_secure' => true]) ?>"
+                       title="<?= $block->escapeHtml($dealer->getName()) ?>"
+                    >
+                        <?= $block->escapeHtml(__('View')) ?>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php endif; ?>

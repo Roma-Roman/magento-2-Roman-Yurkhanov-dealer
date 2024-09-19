@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="RomanYurkhanov_Dealer::dealer" title="Dealer" module="RomanYurkhanov_Dealer" sortOrder="51" resource="RomanYurkhanov_Dealer::dealer"/>
+        <add id="RomanYurkhanov_Dealer::dealer_configuration" title="Settings" module="RomanYurkhanov_Dealer" sortOrder="10" resource="RomanYurkhanov_Dealer::dealer_configuration" parent="RomanYurkhanov_Dealer::dealer"/>
+        <add id="RomanYurkhanov_Dealer::dealer_configuration_item" title="Configuration" module="RomanYurkhanov_Dealer" sortOrder="20" action="adminhtml/system_config/edit/section/romanyurkhanov_dealer" resource="RomanYurkhanov_Dealer::dealer_configuration_item" parent="RomanYurkhanov_Dealer::dealer_configuration"/>
+
+        <add id="RomanYurkhanov_Dealer::dealer_items" title="Dealer &amp; Reviews" module="RomanYurkhanov_Dealer" sortOrder="30" resource="RomanYurkhanov_Dealer::dealer_items" parent="RomanYurkhanov_Dealer::dealer"/>
+        <add id="RomanYurkhanov_Dealer::dealer_list" title="Dealer list" module="RomanYurkhanov_Dealer" sortOrder="40" action="romanyurkhanov_dealer/dealer" resource="RomanYurkhanov_Dealer::configuration" parent="RomanYurkhanov_Dealer::dealer_items"/>
+        <add id="RomanYurkhanov_Dealer::dealer_reviews" title="Dealer reviews" module="RomanYurkhanov_Dealer" sortOrder="50" action="romanyurkhanov_dealer/reviews" resource="RomanYurkhanov_Dealer::configuration" parent="RomanYurkhanov_Dealer::dealer_items"/>
+
+        <add id="RomanYurkhanov_Dealer::configuration" title="Dealer" module="RomanYurkhanov_Dealer" sortOrder="30" resource="RomanYurkhanov_Dealer::configuration" parent="RomanYurkhanov_Base::menu"/>
+        <add id="RomanYurkhanov_Dealer::configuration_item" title="Configuration" module="RomanYurkhanov_Dealer" sortOrder="30" action="adminhtml/system_config/edit/section/romanyurkhanov_dealer" resource="RomanYurkhanov_Dealer::configuration_item" parent="RomanYurkhanov_Dealer::configuration"/>
+    </menu>
+</config>

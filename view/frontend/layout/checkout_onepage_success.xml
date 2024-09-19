@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="success-page-with-dealer"/>
+        <referenceContainer name="content">
+            <block class="RomanYurkhanov\Dealer\Block\Onepage\SuccessDealer" name="custom.order.success.dealer" template="RomanYurkhanov_Dealer::order/success_dealer.phtml" after="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">RomanYurkhanov\Dealer\ViewModel\Dealer</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

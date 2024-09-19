@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="romanyurkhanov_dealer" resource="default" engine="innodb" comment="Dealer table">
+        <column xsi:type="int" name="dealer_id" identity="true" nullable="false" comment="Dealer ID"/>
+        <column xsi:type="varchar" name="code" nullable="false" length="255" comment="Code"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="link" nullable="false" length="255" comment="Link"/>
+        <column xsi:type="varchar" name="logo" nullable="true" length="255" comment="Logo"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="text" name="contact_info" nullable="true" comment="Contact Info"/>
+        <column xsi:type="tinyint" name="is_enabled" nullable="false" default="1" comment="Is Enabled"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="dealer_id"/>
+        </constraint>
+    </table>
+
+    <table name="romanyurkhanov_dealer_reviews" resource="default" engine="innodb" comment="Dealer Reviews table">
+        <column xsi:type="int" name="review_id" identity="true" nullable="false" comment="Review ID"/>
+        <column xsi:type="int" name="dealer_id" nullable="false" comment="Dealer ID"/>
+        <column xsi:type="tinyint" name="rate" nullable="false" comment="Rate"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="text" name="message" nullable="false" comment="Message"/>
+        <column xsi:type="tinyint" name="is_confirmed" nullable="true" default="null" comment="Is Confirmed"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="review_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROMANYURKHANOV_DEALER_REVIEWS_DEALER_ID_ROMANYURKHANOV_DEALER_DEALER_ID" table="romanyurkhanov_dealer_reviews" column="dealer_id" referenceTable="romanyurkhanov_dealer" referenceColumn="dealer_id" onDelete="CASCADE"/>
+    </table>
+</schema>

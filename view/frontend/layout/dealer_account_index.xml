@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <head>
+        <title>Best dealers for you</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="RomanYurkhanov\Dealer\Block\Account\BestDealers" name="dealer.account.index" template="RomanYurkhanov_Dealer::account/index.phtml" cacheable="false" />
+        </referenceContainer>
+    </body>
+</page>

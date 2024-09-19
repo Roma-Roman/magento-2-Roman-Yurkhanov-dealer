@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="dealer">
+        <job instance="RomanYurkhanov\Dealer\Cron\DealerDescriptionUpdate" method="execute" name="dealer_description_update">
+            <schedule>0 0 * * *</schedule>
+        </job>
+    </group>
+</config>

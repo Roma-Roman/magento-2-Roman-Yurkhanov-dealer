@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Dealer View Page</title>
+        <meta name="title" content="Dealer View Page"/>
+        <meta name="description" content="This is Dealer View Page"/>
+        <meta name="keywords" content="Dealer, vendor, your keywords"/>
+    </head>
+
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Dealer View Page</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceContainer name="content">
+            <block class="RomanYurkhanov\Dealer\Block\Dealer\View" name="dealer.view" template="RomanYurkhanov_Dealer::view/index.phtml">
+                <block class="RomanYurkhanov\Dealer\Block\Dealer\View\Reviews"
+                       name="dealer.view.reviews.list"
+                       as="reviews_list"
+                       template="RomanYurkhanov_Dealer::view/reviews/list.phtml"
+                       ifconfig="romanyurkhanov_dealer/general/dealer_review_enabled"
+                />
+                <block class="RomanYurkhanov\Dealer\Block\Dealer\View\Reviews\Form"
+                       name="dealer.view.reviews.form"
+                       as="reviews_form"
+                       template="RomanYurkhanov_Dealer::view/reviews/form.phtml"
+                       ifconfig="romanyurkhanov_dealer/general/dealer_review_enabled"
+                />
+                <block class="RomanYurkhanov\Dealer\Block\Dealer\View\Products"
+                       name="dealer.view.products.list"
+                       as="products_list"
+                       template="RomanYurkhanov_Dealer::view/products/list.phtml"
+                />
+            </block>
+        </referenceContainer>
+    </body>
+</page>

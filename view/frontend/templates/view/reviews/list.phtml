@@ -1,0 +1,87 @@
+<?php
+/**
+ * Roman Yurkhanov
+ *
+ * Email :: ferrumdp@gmail.com
+ * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+ *
+ * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+ * See license.txt for license details.
+ */
+
+/**
+ * @var \RomanYurkhanov\Dealer\Block\Dealer\View\Reviews $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$dealerReviews = $block->getDealerReviews();
+$format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
+?>
+
+<div class="dealer-section-item">
+    <h2><?= $block->escapeHtml(__('Dealer Reviews:')) ?></h2>
+
+    <?php if ($dealerReviews) : ?>
+        <ol class="items review-items">
+            <?php foreach ($dealerReviews as $dealerReview): ?>
+
+            <?php if ($dealerReview->getIsConfirmed()) : ?>
+                    <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
+                        <div class="review-title" itemprop="name">
+                            <?= $escaper->escapeHtml($dealerReview->getTitle()) ?>
+                        </div>
+                        <div class="review-ratings">
+                            <div class="rating-summary item"
+                                 itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            <span class="label rating-label">
+                                <span>
+                                    <strong>
+                                        <?= $escaper->escapeHtml(__('Rating')) ?>
+                                    </strong>
+                                </span>
+                            </span>
+                                <div class="rating-result-value"
+                                     id="review_<?= /* @noEscape */
+                                     $dealerReview->getReviewId() ?>"
+                                >
+                                    <div>
+                                        <div itemprop="ratingValue">
+                                            <?= $escaper->escapeHtml($dealerReview->getRate()) ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-content-container">
+                            <div class="review-content" itemprop="description">
+                                <?= /* @noEscape */ nl2br($escaper->escapeHtml($dealerReview->getMessage())) ?>
+                            </div>
+                            <div class="review-details">
+                                <p class="review-date">
+                                    <span class="review-details-label">
+                                        <?= $escaper->escapeHtml(__('Posted on')) ?>
+                                    </span>
+                                    <time class="review-details-value" itemprop="datePublished"
+                                          datetime="<?= $escaper->escapeHtmlAttr($block->formatDate(
+                                              $dealerReview->getCreatedAt(),
+                                              $format
+                                          )) ?>">
+                                        <?= $escaper->escapeHtml(
+                                            $block->formatDate(
+                                                $dealerReview->getCreatedAt(),
+                                                $format
+                                            )
+                                        ) ?>
+                                    </time>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                <?php endif; ?>
+
+            <?php endforeach; ?>
+        </ol>
+    <?php else : ?>
+        <?= $escaper->escapeHtml(__('There are no reviews for this dealer yet')) ?>
+    <?php endif; ?>
+</div>

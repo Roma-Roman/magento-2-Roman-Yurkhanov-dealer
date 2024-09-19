@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+    /**
+    * Roman Yurkhanov
+    *
+    * Email :: ferrumdp@gmail.com
+    * Linkedin :: https://www.linkedin.com/in/roman-yurkhanov-322035122/
+    *
+    * Copyright 2024-present Roman Yurkhanov. All rights reserved.
+    * See license.txt for license details.
+    */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <romanyurkhanov_dealer>
+            <general>
+                <dealer_tab_name>Dealer Short Information</dealer_tab_name>
+                <dealer_review_enabled>0</dealer_review_enabled>
+            </general>
+
+            <advanced_settings>
+                <available_dealers>1</available_dealers>
+                <add_dealer_info>1</add_dealer_info>
+            </advanced_settings>
+        </romanyurkhanov_dealer>
+    </default>
+</config>
