@@ -2,7 +2,7 @@
   "name": "romanyurkhanov/module-dealer",
   "description": "RomanYurkhanov Dealer module for Magento 2. Help to sell product from other organizations.",
   "type": "magento2-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": [
     "proprietary"
   ],
@@ -16,7 +16,7 @@
   ],
   "require": {
     "php": "^8.2.0",
-    "romanyurkhanov/module-base": "^1.0.0"
+    "romanyurkhanov/module-base": "^1.0.1"
   },
   "autoload": {
     "files": [
